@@ -21,36 +21,20 @@ import {
 } from "@chakra-ui/react";
 
 import { db } from "../../../http/firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 const Create = () => {
 	const COLLECTION = "pokemons";
-	// const [name, setName] = useState("");
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [poke, setPoke] = useState({
 		name: "",
+		hp: 0,
 		atk: 0,
 		def: 0,
 		sp_atk: 0,
 		sp_def: 0,
 		speed: 0,
 	});
-
-	const getData = async (col) => {
-		// let pokemons = [];
-		// try {
-		// 	const querySnapshot = await getDocs(collection(db, col));
-		// 	querySnapshot.forEach((doc) =>
-		// 		pokemons.push({
-		// 			id: doc.id,
-		// 			...doc.data(),
-		// 		})
-		// 	);
-		// 	setPoke(pokemons);
-		// } catch (err) {
-		// 	console.log(err);
-		// }
-	};
 
 	const handleInput = (e) => {
 		const name = e.target.name;
@@ -65,7 +49,7 @@ const Create = () => {
 		const docRef = await addDoc(collection(db, col), doc);
 		onClose();
 	};
-	console.log(poke);
+
 	return (
 		<>
 			<Box>
@@ -86,6 +70,19 @@ const Create = () => {
 							/>
 						</FormControl>
 						<FormControl>
+							<FormLabel>HP: Max 99</FormLabel>
+							<NumberInput defaultValue={0} min={0} max={99}>
+								<NumberInputField
+									name="hp"
+									onChange={handleInput}
+								/>
+								<NumberInputStepper>
+									<NumberIncrementStepper />
+									<NumberDecrementStepper />
+								</NumberInputStepper>
+							</NumberInput>
+						</FormControl>
+						<FormControl>
 							<FormLabel>Attack: Max 99</FormLabel>
 							<NumberInput defaultValue={0} min={0} max={99}>
 								<NumberInputField
@@ -99,7 +96,7 @@ const Create = () => {
 							</NumberInput>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Attack: Max 99</FormLabel>
+							<FormLabel>Defence: Max 99</FormLabel>
 							<NumberInput defaultValue={0} min={0} max={99}>
 								<NumberInputField
 									name="def"
@@ -112,7 +109,7 @@ const Create = () => {
 							</NumberInput>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Attack: Max 99</FormLabel>
+							<FormLabel>Sp. Attack: Max 99</FormLabel>
 							<NumberInput defaultValue={0} min={0} max={99}>
 								<NumberInputField
 									name="sp_atk"
@@ -125,7 +122,7 @@ const Create = () => {
 							</NumberInput>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Attack: Max 99</FormLabel>
+							<FormLabel>Sp. Defence: Max 99</FormLabel>
 							<NumberInput defaultValue={0} min={0} max={99}>
 								<NumberInputField
 									name="sp_def"
@@ -138,7 +135,7 @@ const Create = () => {
 							</NumberInput>
 						</FormControl>
 						<FormControl>
-							<FormLabel>Attack: Max 99</FormLabel>
+							<FormLabel>Speed: Max 99</FormLabel>
 							<NumberInput defaultValue={0} min={0} max={99}>
 								<NumberInputField
 									name="speed"

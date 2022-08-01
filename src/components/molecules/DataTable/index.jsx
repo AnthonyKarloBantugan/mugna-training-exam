@@ -10,6 +10,7 @@ import {
 	TableContainer,
 	Image,
 } from "@chakra-ui/react";
+import TableDetails from "../../atoms/TableDetails";
 
 const DataTable = (pokemon) => {
 	console.log(pokemon);
@@ -33,20 +34,7 @@ const DataTable = (pokemon) => {
 					</Tr>
 				</Thead>
 				<Tbody>
-					<Tr>
-						<Td
-							display="flex"
-							justifyContent="center"
-							alignItems="center"
-						>
-							<Image src={pokemon.sprites.front_default} />
-							{pokemon.id}
-						</Td>
-						<Td>{pokemon.name}</Td>
-						<Td>{pokemon.id}</Td>
-						<Td>{pokemon.id}</Td>
-						<Td>{pokemon.id}</Td>
-					</Tr>
+					<TableDetails />
 				</Tbody>
 				<Tfoot>
 					{/* <Tr>

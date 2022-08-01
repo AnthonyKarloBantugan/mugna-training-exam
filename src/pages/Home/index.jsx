@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import DataTable from "../../components/molecules/DataTable";
+
 import {
 	Container,
 	Box,
@@ -24,9 +24,12 @@ import {
 	SliderFilledTrack,
 	SliderThumb,
 	SliderMark,
+	SimpleGrid,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import Create from "../../components/molecules/Create";
+
+import DataGrid from "../../components/molecules/DataGrid";
+import DataTable from "../../components/molecules/DataTable";
 
 const Home = () => {
 	const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -76,15 +79,21 @@ const Home = () => {
 	return (
 		<section>
 			<Box>
-				<Container>
-					<Text fontSize="6xl" textAlign="center">
+				<Container maxWidth="container.xl">
+					<Text fontSize="4xl" textAlign="center">
 						Pokémon Pokédex
 					</Text>
-					<Create />
 				</Container>
 			</Box>
 			<Box>
-				<Container>
+				<Container maxWidth="container.xl">
+					<DataGrid />
+				</Container>
+			</Box>
+			<Box>
+				<Container maxWidth="container.xl">
+					<Text fontSize="4xl">ORIGINAL POKEMONS</Text>
+					{/* <DataTable /> */}
 					<UnorderedList>
 						{pokemons.map((pokemon) => (
 							<ListItem key={pokemon.name}>
@@ -95,7 +104,7 @@ const Home = () => {
 						))}
 					</UnorderedList>
 					<Box>
-						<Container textAlign="center">
+						<Container textAlign="center" maxWidth="container.xl">
 							<Button
 								padding="10px 20px"
 								mr="20px"
