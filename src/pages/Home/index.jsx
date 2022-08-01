@@ -6,17 +6,33 @@ import {
 	Box,
 	Text,
 	Button,
-	List,
 	ListItem,
-	ListIcon,
 	UnorderedList,
+	useDisclosure,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+	FormControl,
+	FormLabel,
+	Input,
+	Slider,
+	SliderTrack,
+	SliderFilledTrack,
+	SliderThumb,
+	SliderMark,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Create from "../../components/molecules/Create";
 
 const Home = () => {
 	const BASE_URL = "https://pokeapi.co/api/v2/";
 	const [pokemons, setPokemons] = useState([]);
 	const [next, setNext] = useState("");
+	const [prev, setPrev] = useState("");
 
 	const getPokemons = async () => {
 		try {
@@ -29,14 +45,29 @@ const Home = () => {
 		}
 	};
 
-	const getPokeSprites = async () => {
-		const response = axios.get();
+	const fetchNextData = async () => {
+		try {
+			const response = await axios.get(next);
+			setPokemons(response.data.results);
+			setNext(response.data.next);
+			setPrev(response.data.previous);
+		} catch (error) {
+			console.log(error.message);
+		}
 	};
 
-	const fetchNextData = async () => {
-		const response = await axios.get(next);
-		setPokemons(response.data.results);
+	const fetchPrevData = async () => {
+		try {
+			const response = await axios.get(prev);
+			setPokemons(response.data.results);
+			setNext(response.data.next);
+			setPrev(response.data.previous);
+		} catch (error) {
+			console.log(error.message);
+		}
 	};
+
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	useEffect(() => {
 		getPokemons();
@@ -46,7 +77,10 @@ const Home = () => {
 		<section>
 			<Box>
 				<Container>
-					<Text>Pokémon Pokédex</Text>
+					<Text fontSize="6xl" textAlign="center">
+						Pokémon Pokédex
+					</Text>
+					<Create />
 				</Container>
 			</Box>
 			<Box>
@@ -60,6 +94,21 @@ const Home = () => {
 							</ListItem>
 						))}
 					</UnorderedList>
+					<Box>
+						<Container textAlign="center">
+							<Button
+								padding="10px 20px"
+								mr="20px"
+								onClick={fetchPrevData}
+								isDisabled={prev === "" ? true : false}
+							>
+								Prev
+							</Button>
+							<Button padding="10px 20px" onClick={fetchNextData}>
+								Next
+							</Button>
+						</Container>
+					</Box>
 				</Container>
 			</Box>
 		</section>

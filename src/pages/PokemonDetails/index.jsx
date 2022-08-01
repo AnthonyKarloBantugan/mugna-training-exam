@@ -32,17 +32,14 @@ const PokemonDetails = () => {
 	useEffect(() => {
 		getDetails();
 	}, []);
-	// console.log(types);
-	// console.log(pokemon);
+
 	return pokemon ? (
 		<section>
 			<Container>
 				<Box textAlign="center">
 					<Text fontSize="6xl">{pokemon?.name}</Text>
 					<Image
-						// src={
-						// 	pokemon.sprites.other.dream_world.front_default
-						// }
+						src={pokemon?.sprites?.other.dream_world.front_default}
 						marginBlock="30px"
 						marginInline="auto"
 						textAlign="center"

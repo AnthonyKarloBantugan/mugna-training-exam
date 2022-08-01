@@ -10,8 +10,6 @@ import {
 	TableContainer,
 	Image,
 } from "@chakra-ui/react";
-import axios from "axios";
-import TableDetails from "../../atoms/TableDetails";
 
 const DataTable = (pokemon) => {
 	console.log(pokemon);
