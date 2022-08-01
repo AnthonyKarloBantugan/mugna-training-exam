@@ -9,27 +9,10 @@ import {
 	ListItem,
 	UnorderedList,
 	useDisclosure,
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalFooter,
-	ModalBody,
-	ModalCloseButton,
-	FormControl,
-	FormLabel,
-	Input,
-	Slider,
-	SliderTrack,
-	SliderFilledTrack,
-	SliderThumb,
-	SliderMark,
-	SimpleGrid,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 import DataGrid from "../../components/molecules/DataGrid";
-import DataTable from "../../components/molecules/DataTable";
 
 const Home = () => {
 	const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -90,15 +73,15 @@ const Home = () => {
 					<DataGrid />
 				</Container>
 			</Box>
-			<Box>
+			<Box padding="20px">
 				<Container maxWidth="container.xl">
 					<Text fontSize="4xl">ORIGINAL POKEMONS</Text>
-					{/* <DataTable /> */}
+
 					<UnorderedList>
 						{pokemons.map((pokemon) => (
-							<ListItem key={pokemon.name}>
+							<ListItem fontWeight="bold" key={pokemon.name}>
 								<Link to={`pokemon/${pokemon.name}`}>
-									{pokemon.name}
+									{pokemon.name.toUpperCase()}
 								</Link>
 							</ListItem>
 						))}

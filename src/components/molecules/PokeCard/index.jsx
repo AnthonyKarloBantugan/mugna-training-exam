@@ -68,6 +68,7 @@ const PokeCard = ({ id, name, atk, def, sp_atk, sp_def, speed, hp }) => {
 		<Box minHeight="200px" padding="20px">
 			<Box>
 				<Image
+					width="150px"
 					marginInline="auto"
 					src="https://www.freeiconspng.com/uploads/pokeball-icon-4.png"
 				/>
@@ -76,15 +77,15 @@ const PokeCard = ({ id, name, atk, def, sp_atk, sp_def, speed, hp }) => {
 				</Text>
 			</Box>
 			<Box textAlign="center">
-				<Text fontWeight="bold" mt="10px" fontSize="1.5rem">
+				<Text fontWeight="700" mt="10px" fontSize="1.5rem">
 					Base Stats
 				</Text>
-				<Text fontWeight="bold">HP: {hp}</Text>
-				<Text fontWeight="bold">Attack: {atk}</Text>
-				<Text fontWeight="bold">Defence: {def}</Text>
-				<Text fontWeight="bold">Special Attack: {sp_atk}</Text>
-				<Text fontWeight="bold">Special Defence: {sp_def}</Text>
-				<Text fontWeight="bold">Speed: {speed}</Text>
+				<Text fontWeight="500">HP: {hp}</Text>
+				<Text fontWeight="500">Attack: {atk}</Text>
+				<Text fontWeight="500">Defence: {def}</Text>
+				<Text fontWeight="500">Special Attack: {sp_atk}</Text>
+				<Text fontWeight="500">Special Defence: {sp_def}</Text>
+				<Text fontWeight="500">Speed: {speed}</Text>
 			</Box>
 			<Box display="flex" justifyContent="space-evenly" p="20px">
 				<Button onClick={onOpen}>Edit</Button>

@@ -1,8 +1,8 @@
-import DataTable from "../../components/molecules/DataTable";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Box, Image, Text } from "@chakra-ui/react";
+import { Container, Box, Image, Text, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 const PokemonDetails = () => {
 	const BASE_URL = "https://pokeapi.co/api/v2/";
 	const { name } = useParams();
@@ -65,6 +65,11 @@ const PokemonDetails = () => {
 							<Text>HP: {stats.sp_atk}</Text>
 							<Text>HP: {stats.sp_def}</Text>
 							<Text>HP: {stats.speed}</Text>
+						</Box>
+						<Box>
+							<Button>
+								<Link to="/">Back</Link>
+							</Button>
 						</Box>
 					</Container>
 				</Box>
