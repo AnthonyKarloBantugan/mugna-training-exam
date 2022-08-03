@@ -35,9 +35,9 @@ const PokemonDetails = () => {
 
 	return pokemon ? (
 		<section>
-			<Container>
+			<Container maxW="container.lg">
+				<Text fontSize="6xl">{pokemon?.name}</Text>
 				<Box textAlign="center">
-					<Text fontSize="6xl">{pokemon?.name}</Text>
 					<Image
 						src={pokemon?.sprites?.other.dream_world.front_default}
 						marginBlock="30px"
@@ -46,11 +46,16 @@ const PokemonDetails = () => {
 					/>
 				</Box>
 				<Box>
-					<Container>
+					<Text>PokeDex Data</Text>
+				</Box>
+
+				<Box>
+					<Container maxW="container.lg">
 						<Box>
 							<Text>National No: {pokemon?.id}</Text>
 							<Text>
-								Type: {types.map((type) => type.type.name)}
+								Type:{" "}
+								{types.map((type) => type.type.name).join(",")}
 							</Text>
 
 							<Text>Species: {pokemon?.id}</Text>

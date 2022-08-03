@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import {
-	Container,
-	Box,
-	Text,
-	Button,
-	ListItem,
-	UnorderedList,
-	useDisclosure,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Container, Box, Text, Button } from "@chakra-ui/react";
 
 import DataGrid from "../../components/molecules/DataGrid";
+import DataTable from "../../components/molecules/DataTable";
 
 const Home = () => {
 	const BASE_URL = "https://pokeapi.co/api/v2/";
@@ -23,7 +15,6 @@ const Home = () => {
 	const getPokemons = async () => {
 		try {
 			const response = await axios.get(`${BASE_URL}pokemon/`);
-
 			setPokemons(response.data.results);
 			setNext(response.data.next);
 		} catch (error) {
@@ -53,8 +44,6 @@ const Home = () => {
 		}
 	};
 
-	const { isOpen, onOpen, onClose } = useDisclosure();
-
 	useEffect(() => {
 		getPokemons();
 	}, []);
@@ -75,19 +64,28 @@ const Home = () => {
 			</Box>
 			<Box padding="20px">
 				<Container maxWidth="container.xl">
-					<Text fontSize="4xl">ORIGINAL POKEMONS</Text>
+					<Text fontSize="4xl" textAlign="center">
+						ORIGINAL POKEMONS
+					</Text>
+					<Box marginBlock="20px">
+						<Container maxWidth="container.xl">
+							<Button
+								padding="10px 20px"
+								mr="20px"
+								onClick={fetchPrevData}
+								isDisabled={prev === "" ? true : false}
+							>
+								Prev
+							</Button>
+							<Button padding="10px 20px" onClick={fetchNextData}>
+								Next
+							</Button>
+						</Container>
+					</Box>
+					<DataTable pokemons={pokemons} />
 
-					<UnorderedList>
-						{pokemons.map((pokemon) => (
-							<ListItem fontWeight="bold" key={pokemon.name}>
-								<Link to={`pokemon/${pokemon.name}`}>
-									{pokemon.name.toUpperCase()}
-								</Link>
-							</ListItem>
-						))}
-					</UnorderedList>
 					<Box>
-						<Container textAlign="center" maxWidth="container.xl">
+						<Container maxWidth="container.xl">
 							<Button
 								padding="10px 20px"
 								mr="20px"

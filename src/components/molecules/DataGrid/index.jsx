@@ -1,5 +1,5 @@
 import PokeCard from "../PokeCard";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../http/firebase";
 import { SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
@@ -22,9 +22,10 @@ const DataGrid = () => {
 			console.log(err);
 		}
 	};
+
 	useEffect(() => {
 		getData();
-	});
+	}, [Create]);
 
 	return (
 		<>
